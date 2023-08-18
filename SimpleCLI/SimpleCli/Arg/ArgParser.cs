@@ -1,6 +1,5 @@
 namespace SimpleCli.Arg;
 
-
 public class ArgParser<TCommandsEnum, TFlagsEnum> 
     where TCommandsEnum : Enum
     where TFlagsEnum : Enum

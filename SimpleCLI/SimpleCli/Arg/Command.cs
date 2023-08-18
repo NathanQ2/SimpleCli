@@ -5,7 +5,7 @@ public class Command<TPotentialCommands, TPotentialFlags>
     where TPotentialFlags : Enum
 {
     public readonly TPotentialCommands BaseCommand;
-    public readonly TPotentialFlags[]    Flags;
+    public readonly TPotentialFlags[] Flags;
 
     public Command(TPotentialCommands command, TPotentialFlags[] flags)
     {

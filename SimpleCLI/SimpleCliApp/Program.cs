@@ -8,11 +8,11 @@ public static class Program
     
     private static void Main(string[] args)
     {
-        var argParser = new ArgParser<PotentialCommands, PotentialFlags>(CommandManager.TryStringToCommandEnum, CommandManager.TryStringToFlagsEnum);
-
-        string[] testArgs = { "message", "-b", "-h" };
-
-        _appLayer = new AppLayer(argParser.Parse(testArgs));
+        var argParser = new ArgParser<PotentialCommands, PotentialFlags>(
+            CommandManager.TryStringToCommandEnum,
+            CommandManager.TryStringToFlagsEnum);
+        
+        _appLayer = new AppLayer(argParser.Parse(args));
         
         SimpleCli.SimpleCli.PushLayer(_appLayer);
         SimpleCli.SimpleCli.Start();

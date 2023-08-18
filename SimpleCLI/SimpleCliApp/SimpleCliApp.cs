@@ -8,9 +8,6 @@ namespace SimpleCliApp;
 /// </summary>
 public class AppLayer : SimpleCliLayer
 {
-    /// <summary>
-    /// Command line commands passed through 
-    /// </summary>
     private readonly Command<PotentialCommands, PotentialFlags>? _commandLineCommand;
     public AppLayer(Command<PotentialCommands, PotentialFlags>? commandLineCommand)
     {
@@ -34,10 +31,28 @@ public class AppLayer : SimpleCliLayer
         
         Console.WriteLine($"Arg Parsed: {CommandManager.CommandEnumToString(_commandLineCommand.BaseCommand)} {CommandManager.FlagsEnumToString(_commandLineCommand.Flags)}");
 
-        if (_commandLineCommand.Flags.Contains(PotentialFlags.HelloFlag)) 
-            Console.WriteLine("Hello");
-        if (_commandLineCommand.Flags.Contains(PotentialFlags.GoodbyeFlag)) 
-            Console.WriteLine("Goodbye");
+        if (_commandLineCommand.BaseCommand == PotentialCommands.Message)
+        {
+            foreach (PotentialFlags flag in _commandLineCommand.Flags)
+            {
+                switch (flag)
+                {
+                    case PotentialFlags.HelloFlag:
+                        Console.WriteLine("Hello");
+
+                        break;
+                    case PotentialFlags.GoodbyeFlag:
+                            Console.WriteLine("Goodbye");
+
+                            break;
+
+                    case PotentialFlags.None:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();    
+                }
+            }
+        }
     }
     
     /// <summary>
