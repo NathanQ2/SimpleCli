@@ -1,4 +1,5 @@
 using System.Text;
+using SimpleCli.Arg;
 
 namespace SimpleCliApp;
 
@@ -34,16 +35,26 @@ public static class CommandManager
 
     public static bool TryStringToFlagEnum(string arg, PotentialCommands command, out PotentialFlags result)
     {
-        switch (arg)
+        switch  (command)
         {
-            case "-h":
-                result = PotentialFlags.HelloFlag;
+            case PotentialCommands.Message:
+                switch (arg)
+                {
+                    case "-h" or "--hello":
+                        result = PotentialFlags.HelloFlag;
 
-                return true;
-            case "-b":
-                result = PotentialFlags.GoodbyeFlag;
+                        return true;
+                    case "-b" or "--bye":
+                        result = PotentialFlags.GoodbyeFlag;
 
-                return true;
+                        return true;
+                }
+
+                break;
+            case PotentialCommands.None:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(command), command, null);
         }
 
         result = PotentialFlags.None;
