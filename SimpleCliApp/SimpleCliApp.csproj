@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SimpleCli\SimpleCli.csproj" />
+      <ProjectReference Include="..\SimpleCli\SimpleCli\SimpleCli.csproj" />
     </ItemGroup>
 
 </Project>
